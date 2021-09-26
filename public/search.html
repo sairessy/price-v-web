@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="http://localhost:3000/assets/icon.png">
+  <link rel="icon" href="/assets/icon.png">
   <title>Price - Search</title>
   <style>
     @font-face {
       font-family: rbt;
-      src: url(./assets/fonts/Roboto-Regular.ttf);
+      src: url(/assets/fonts/Roboto-Regular.ttf);
     }
 
     @font-face {
       font-family: ms;
-      src: url(./assets/fonts/Montserrat-Light.ttf);
+      src: url(/assets/fonts/Montserrat-Light.ttf);
     }
 
     * {
@@ -25,7 +25,7 @@
     }
 
     body {
-      background-image: url(http://localhost:3000/assets/img/searchengin.svg);
+      background-image: url(/assets/img/searchengin.svg);
       background-repeat: no-repeat;
       background-position: center 150px;
       background-size: 200px;
@@ -38,8 +38,8 @@
   <header
     style="position: sticky;top: 0;display: flex;align-items: center;background-color: #fff;padding: 5px;box-shadow: 0 2px 5px 1px #aaa;border-top: 20px solid #0a228d;">
     <div style="flex: 1;display: flex;align-items: center;justify-content: space-between;">
-      <div style="display: flex;align-items: center;">
-        <img src="http://localhost:3000/assets/img/bars-solid.svg" alt="menu" width="30" height="30"
+      <div style="display: flex;align-items: center;" id="logo">
+        <img src="/assets/img/bars-solid.svg" alt="menu" width="30" height="30"
           style="display: none;">
         <a href="/" style="text-decoration: none;display: flex;align-items: center;margin-left: 10px;">
           <img src="./assets/icon.png" alt="logo" width="30" height="30">
@@ -49,18 +49,18 @@
 
       <div style="display: flex;align-items: center;">
         <button
-          style="background: url(http://localhost:3000/assets/img/filter-solid.svg) no-repeat 5px center/20px;cursor: pointer;display: inline-block;height: 30px;width: 90px;border: 1px solid #ddd;border-right: none;background-color: #fff;padding-left: 30px;">Filtrar
+          style="background: url(/assets/img/filter-solid.svg) no-repeat 5px center/20px;cursor: pointer;display: inline-block;height: 30px;width: 90px;border: 1px solid #ddd;border-right: none;background-color: #fff;padding-left: 30px;">Filtrar
         </button>
         <div style="display: flex;align-items: center;">
           <input type="search" placeholder="Pesquisar" id="inp-search" autofocus
-            style="padding: 8px 10px;padding-left: 40px; width: 550px;display: inline-block;height: 30px;border: 1px solid #ddd;outline: none;background: url(http://localhost:3000/assets/img/search-solid.svg) no-repeat 5px center/20px;background-color: #fff;">
+            style="padding: 8px 10px;padding-left: 40px; width: 550px;display: inline-block;height: 30px;border: 1px solid #ddd;outline: none;background: url(/assets/img/search-solid.svg) no-repeat 5px center/20px;background-color: #fff;">
         </div>
       </div>
 
 
-      <a href="/login"
-        style="display: inline-flex;align-items: center;justify-content: space-between;cursor: pointer;width: 140px;padding: 10px; border: 1px solid #0a228d;text-decoration: none;background-color: #fff;font-size: 13px;">
-        <img src="http://localhost:3000/assets/img/user-circle.svg" alt="user" width="20" height="20">
+      <a href="/login" id="link-login"
+        style="display: inline-flex;align-items: center;justify-content: space-between;cursor: pointer;width: 120px;padding: 10px; border: 1px solid #0a228d;text-decoration: none;background-color: #fff;font-size: 13px;">
+        <img src="/assets/img/user-circle.svg" alt="user" width="20" height="20">
         <p style="color: #0a228d; text-transform: uppercase;" id="btn-login-label">Fazer login</p>
       </a>
     </div>
@@ -88,7 +88,7 @@
   </footer>
 </body>
 
-<script src="http://localhost:3000/js/CONFIG.js"></script>
+<script src="/js/CONFIG.js"></script>
 <script>
 
   checkSession();
@@ -142,13 +142,13 @@
       <div style="margin-bottom: 20px;background-color: #fff;border: 1px solid #eee;">
       <div
          style="width: 100%;height: 140px;margin-bottom: 10px;display: flex;justify-content: center;align-items: center;border-bottom: 1px solid #ddd;background: url(${product.photo.url}) no-repeat center center/100px;background-color: #eee;">
-        <img src="http://localhost:3000/assets/img/image.svg" alt="image" width="20" height="20" style="display: ${product.photo.url == '' ? 'block' : 'none'}">
+        <img src="/assets/img/image.svg" alt="image" width="20" height="20" style="display: ${product.photo.url == '' ? 'block' : 'none'}">
       </div>
       <div style="display: flex;padding: 5px;">
         <div style="flex: 1;">
           <p style="height: 40px;font-size: 14px;font-weight: bold;">${product.title}</p>
           <div style="display: flex; align-items: center;margin-top: 5px;">
-            <img src="http://localhost:3000/assets/img/arrow-down-solid.svg" width="20" height="20"
+            <img src="/assets/img/arrow-down-solid.svg" width="20" height="20"
               style="display: ${product.promotional ? 'inline-block' : 'none'}"
             />
             <b style="font-size: 14px;">$ ${product.price}</b>
@@ -156,7 +156,7 @@
 
           <div style="display: flex; align-items: center;">
             <a href="/facility/${product.user}" style="display: flex; align-items: center;text-decoration: none;color: #000;margin-top: 10px;">
-              <img src='http://localhost:3000/assets/img/store-alt-solid.svg' alt="store" width="20" height="20" style="margin-right: 5px;" />
+              <img src='/assets/img/store-alt-solid.svg' alt="store" width="20" height="20" style="margin-right: 5px;" />
               <p>${product.facilityInfo.facilityName}</p>
             </a>
           </div>
@@ -176,11 +176,17 @@
       document.getElementById('products').innerHTML = products;
     } else {
       document.getElementById('products').innerHTML = '<div></div>';
-      document.getElementById('body').style.backgroundImage = 'url(http://localhost:3000/assets/img/searchengin.svg)';
+      document.getElementById('body').style.backgroundImage = 'url(/assets/img/searchengin.svg)';
     }
 
     return json;
 
+  }
+  
+  if(screen.width <= 414) {
+    document.getElementById('logo').style.display = 'none';
+    document.getElementById('link-login').style.display = 'none';
+    document.getElementById('inp-search').style.width = '100%';
   }
 </script>
 

@@ -5,12 +5,14 @@ const port = process.env.PORT || 3000;
 
 // NeDB
 const Datastore = require('nedb');
-db = {};
+const db = {};
 db.users = new Datastore('./db/users.db');
 db.products = new Datastore('./db/products.db');
 
 db.users.loadDatabase();
 db.products.loadDatabase();
+
+module.exports = db;
 
 // FIREBASE
 
@@ -96,9 +98,9 @@ app.get('/delete/:id', (req, res) => {
   if (req.cookies.user !== undefined) {
     const id = req.params.id;
     const deleteProduct = user.deleteProduct(id);
-    res.redirect('http://localhost:3000/profile');
+    res.redirect('/profile');
   } else {
-    res.redirect('http://localhost:3000/profile');
+    res.redirect('/profile');
   }
   res.end();
 });
@@ -232,3 +234,14 @@ app.post('/updateuserlocation', async (req, res) => {
   const updateLocation = await user.updateLocation(req.body, req.cookies.user);
   res.json(updateLocation);
 });
+
+app.post('/userexists', async (req, res) => {
+  const exists = await user.exists(req.body);
+  res.json(exists);
+});
+
+app.post('/recoverypassword', async (req, res) => {
+  const recovery = await user.recoveryPassword(req.body);
+  res.json(recovery);
+});
+

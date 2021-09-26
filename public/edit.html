@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="http://localhost:3000/assets/icon.png">
+  <link rel="icon" href="/assets/icon.png">
   <title>Price - Edit product</title>
   <style>
     @font-face {
       font-family: rbt;
-      src: url(http://localhost:3000/assets/fonts/Roboto-Regular.ttf);
+      src: url(/assets/fonts/Roboto-Regular.ttf);
     }
 
     @font-face {
       font-family: ms;
-      src: url(http://localhost:3000/assets/fonts/Montserrat-Light.ttf);
+      src: url(/assets/fonts/Montserrat-Light.ttf);
     }
 
     * {
@@ -38,7 +38,7 @@
         style="text-decoration: none; color: #0a228d;font-size: 14px;">Voltar</a></p>
     <div id="add-product-photo"
       style="width: 95%; height: 160px;background-color: #f9f9f9;display: flex;justify-content: center;align-items: center;margin: auto;">
-      <img src="http://localhost:3000/assets/img/image.svg" alt="image" width="20" height="20" id="photo-o">
+      <img src="/assets/img/image.svg" alt="image" width="20" height="20" id="photo-o">
     </div>
     <div style="padding: 10px;">
       <input
@@ -60,7 +60,7 @@
       <button
         style="padding: 10px;margin: 10px auto;display: block;width: 100%;background: #702e9c; border: 1px solid #702e9c;color:#fff;text-align: center;cursor: pointer;"
         id="btn-edit">Editar</button>
-      <img src="http://localhost:3000/assets/img/loader.gif" alt="loading" style="display: none;margin: 10px auto;"
+      <img src="/assets/img/loader.gif" alt="loading" style="display: none;margin: 10px auto;"
         id="img-loading">
     </div>
   </form>
@@ -74,7 +74,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 
-<script src="http://localhost:3000/js/CONFIG.js"></script>
+<script src="/js/CONFIG.js"></script>
 <script>
 
   // Web app's Firebase configuration
@@ -221,7 +221,9 @@
 
   }
 
-
+  if(screen.width <= 414) {
+    document.getElementById('form-add-product').style.width = 'auto';
+  }
 </script>
 
 </html>

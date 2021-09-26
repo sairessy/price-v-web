@@ -1,3 +1,5 @@
+const db = require('../index');
+
 class Dao {
   constructor() { }
 

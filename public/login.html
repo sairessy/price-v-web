@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="http://localhost:3000/assets/icon.png">
+  <link rel="icon" href="/assets/icon.png">
   <title>Price - Login</title>
   <style>
     @font-face {
       font-family: rbt;
-      src: url(./assets/fonts/Roboto-Regular.ttf);
+      src: url(/assets/fonts/Roboto-Regular.ttf);
     }
 
     @font-face {
       font-family: ms;
-      src: url(./assets/fonts/Montserrat-Light.ttf);
+      src: url(/assets/fonts/Montserrat-Light.ttf);
     }
 
     * {
@@ -23,7 +23,7 @@
     }
 
     body {
-      background-color: #f9f9f9;
+      background-color: #fff;
     }
   </style>
 </head>
@@ -33,7 +33,7 @@
     <form id="form-login"
       style="width: 340px;height: 500px;display: flex;flex-direction: column;justify-content: center; margin: auto;border: 1px solid #eee;padding: 10px;background-color: #fff;">
       <a href="/" style="margin: 10px auto;">
-        <img src="http://localhost:3000/assets/icon.png" alt="logo" width="50" height="50">
+        <img src="/assets/icon.png" alt="logo" width="50" height="50">
       </a>
       <input style="padding: 10px;margin: 10px;outline: none;border: 1px solid #ddd;" type="email" placeholder="Email"
         id="email">
@@ -43,7 +43,7 @@
         style="padding: 10px;margin: 10px;background: #702e9c; border: 1px solid #702e9c;color:#fff;cursor: pointer;">Entrar</button>
       <a style="padding: 10px;text-decoration: none;color: #702e9c;font-size: 14px;" href="/register">Ainda não tenho
         uma conta!</a>
-      <a style="padding: 10px;text-decoration: none;color: #702e9c;font-size: 14px;" href="#">Esqueci a senha!</a>
+      <a style="padding: 10px;text-decoration: none;color: #702e9c;font-size: 14px;" href="/recovery">Esqueci a senha!</a>
   </section>
 </body>
 
@@ -68,10 +68,16 @@
     const json = await response.json();
 
     if (json.status) {
-      window.location.href = 'http://localhost:3000/profile';
+      window.location.href = '/profile';
     } else {
       alert('Email ou senha inválidos!');
     }
+  }
+  
+//   Make it responsible
+  if(screen.width <= 414) {
+    document.getElementById('form-login').style.width = 'auto';
+    document.getElementById('form-login').style.border = 'none';
   }
 </script>
 

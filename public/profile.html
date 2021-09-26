@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="http://localhost:3000/assets/icon.png">
+  <link rel="icon" href="/assets/icon.png">
   <title>Price - Profile</title>
   <style>
     @font-face {
       font-family: rbt;
-      src: url(./assets/fonts/Roboto-Regular.ttf);
+      src: url(/assets/fonts/Roboto-Regular.ttf);
     }
 
     @font-face {
       font-family: ms;
-      src: url(./assets/fonts/Montserrat-Light.ttf);
+      src: url(/assets/fonts/Montserrat-Light.ttf);
     }
 
     * {
@@ -35,7 +35,7 @@
     style="position: sticky;top: 0;display: flex;align-items: center;background-color: #fff;padding: 5px;box-shadow: 0 2px 5px 1px #aaa;border-top: 20px solid #0a228d;">
     <div style="flex: 1;display: flex;align-items: center;justify-content: space-between;">
       <div style="display: flex;align-items: center;">
-        <img src="http://localhost:3000/assets/img/bars-solid.svg" alt="menu" width="30" height="30"
+        <img src="/assets/img/bars-solid.svg" alt="menu" width="30" height="30"
           style="display: none;">
         <a href="/" style="text-decoration: none;display: flex;align-items: center;margin-left: 10px;">
           <img src="./assets/icon.png" alt="logo" width="30" height="30">
@@ -44,7 +44,7 @@
       </div>
 
       <div style="display: flex; align-items: center;text-decoration: none;color: #000;margin-top: 10px;">
-        <img src='http://localhost:3000/assets/img/store-alt-solid.svg' alt="store" width="20" height="20"
+        <img src='/assets/img/store-alt-solid.svg' alt="store" width="20" height="20"
           style="margin-right: 5px;" />
         <p>
           Meu Perfil
@@ -53,14 +53,14 @@
 
 
       <a href="/logout" style="display: inline-flex;align-items: center;padding: 10px;">
-        <img src="http://localhost:3000/assets/img/sign-out-alt-solid.svg" alt="user" width="30" height="30">
+        <img src="/assets/img/sign-out-alt-solid.svg" alt="user" width="30" height="30">
       </a>
     </div>
   </header>
 
   <div style="
     display: flex;
-  ">
+  " id="main-container">
     <aside style="flex: 0.3;background: #fff;
         justify-content: center; padding: 10px;height: calc(100vh - 70px);overflow-y: scroll;
       ">
@@ -85,18 +85,18 @@
         flex: 1;background-color: #f9f9f9;padding: 10px;
       ">
       <button id="btn-new-product"
-        style="cursor: pointer;padding: 10px 10px 10px 40px; background: url(./assets/img/plus-solid.svg) no-repeat 10px center/20px;border: 1px solid #aaa;background-color: #eee;">
+        style="cursor: pointer;padding: 10px 10px 10px 40px; background: url(/assets/img/plus-solid.svg) no-repeat 10px center/20px;border: 1px solid #aaa;background-color: #eee;">
         Adicionar novo produto
       </button>
 
       <div id="products"
-        style="margin-top: 20px;display: grid;grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));grid-gap: 20px;height: calc(100vh - 130px);overflow-y: scroll;">
+        style="padding-top: 10px;margin-top: 10px;display: grid;grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));grid-gap: 20px;height: calc(100vh - 130px);overflow-y: scroll;border-top: 1px solid #ddd;">
       </div>
     </section>
   </div>
 
   <div
-    style="position: fixed; top: 0;left: 0;background-color: #fff;width: 100%;height: 100vh;background-color: rgba(0, 0, 0, 0.404);display: none;justify-content: center;align-items: center;"
+    style="position: fixed; top: 0;left: 0;background-color: #fff;width: 100%;height: 100vh;background-color: rgba(0, 0, 0, 0.404);display: none;justify-content: center;align-items: center;overflow-y: scrool;"
     id="form-add-product-container">
     <form action="" id="form-add-product"
       style="width: 400px;margin:20px auto;display:flex;flex-direction: column;background-color: #fff;">
@@ -146,6 +146,13 @@
 <!-- SCRIPTS  -->
 <script src="./js/CONFIG.js"></script>
 <script>
+//   RESPONSIVE
+//   Mobile
+  if(screen.width <= 414) {
+    document.getElementById('main-container').style.flexDirection = 'column';
+    document.querySelector('aside').style.borderBottom = '1px solid #ccc';
+  }
+  
   // Delete product
   async function deleteProduct(id) {
     const response = await fetch('/delete/' + id);
@@ -248,7 +255,8 @@
     });
     const json = await response.json();
     if (json.status) {
-      // alert('Producto adicionado com sucesso!');
+      alert(`"${product.title}" adicionado!`);
+      document.getElementById('form-add-product-container').style.display = 'none';
       getFacilityProducts();
     }
   });
@@ -334,7 +342,7 @@
     <div style="margin-bottom: 20px;background-color: #fff;height: 260px;">
       <div
         style="width: 100%;height: 140px;margin-bottom: 10px;display: flex;justify-content: center;align-items: center;background: url(${json[i].photo.url}) no-repeat center center/100px;background-color: #eee;">
-        <img src="http://localhost:3000/assets/img/image.svg" alt="image" width="20" height="20"
+        <img src="/assets/img/image.svg" alt="image" width="20" height="20"
           style="display: ${json[i].photo.url == '' ? 'block' : 'none'};"
         >
       </div>
@@ -343,8 +351,8 @@
         <p><b>$ ${json[i].price}</b></p> 
       </div>
       <div>
-        <a href="/delete/${json[i]._id}"><img src='./assets/img/trash-solid.svg' width="20" height="20" style="cursor: pointer;" /></a>
-        <a href="/edit/${json[i]._id}"><img style='cursor: pointer;' src='./assets/img/edit.svg' width="20" height="20" /></a>
+        <a href="/delete/${json[i]._id}"><img src='/assets/img/trash-solid.svg' width="20" height="20" style="cursor: pointer;" /></a>
+        <a href="/edit/${json[i]._id}"><img style='cursor: pointer;' src='/assets/img/edit.svg' width="20" height="20" /></a>
       </div>
     </div>
   `;
@@ -352,6 +360,7 @@
 
     document.getElementById('products').innerHTML = products;
   }
+  
 </script>
 
 </html>

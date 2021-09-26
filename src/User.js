@@ -1,3 +1,14 @@
+const db = require('../index');
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'price.v.web@gmail.com',
+    pass: 'price.v.web,47'
+  }
+});
+
 class User {
   constructor() { }
 
@@ -91,6 +102,55 @@ class User {
 
     return {
       status: true
+    }
+  }
+
+  async exists(data) {
+    const result = await new Promise((resolve, reject) => {
+      db.users.find({ email: data.email }, (err, d) => {
+        resolve(d);
+      });
+    });
+
+    if (result.length > 0) {
+      // Send email with code
+      const email = data.email;
+      const recoveryCode = result[0].recoveryCode;
+
+      var mailOptions = {
+        from: 'price-v-web@gmail.com',
+        to: email,
+        subject: 'Email de recuperação de senha (price)',
+        text: 'Este é o seu código de recuperação de senha ' + recoveryCode
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    }
+
+    return {
+      status: result.length > 0
+    }
+  }
+
+  async recoveryPassword(data) {
+    const result = await new Promise((resolve, reject) => {
+      db.users.update({ email: data.email, recoveryCode: data.recoveryCode }, {
+        $set: {
+          pass: data.pass
+        }
+      }, { multi: true }, function (err, numReplaced) {
+        resolve(numReplaced);
+      });
+    });
+
+    return {
+      status: result > 0
     }
   }
 }

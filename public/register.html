@@ -5,21 +5,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="http://localhost:3000/assets/icon.png">
+  <link rel="icon" href="/assets/icon.png">
   <title>Price - Register</title>
   <style>
     @font-face {
       font-family: rbt;
-      src: url(./assets/fonts/Roboto-Regular.ttf);
+      src: url(/assets/fonts/Roboto-Regular.ttf);
     }
 
     @font-face {
       font-family: ms;
-      src: url(./assets/fonts/Montserrat-Light.ttf);
+      src: url(/assets/fonts/Montserrat-Light.ttf);
     }
 
     body {
-      background-color: #f9f9f9;
+      background-color: #fff;
     }
 
     * {
@@ -33,7 +33,7 @@
     <form id="form-register"
       style="width: 340px;height: 500px;display: flex;flex-direction: column;justify-content: center; margin: auto;border: 1px solid #eee;padding: 10px;background-color: #fff;">
       <a href="/" style="margin: 10px auto;">
-        <img src="http://localhost:3000/assets/icon.png" alt="logo" width="50" height="50">
+        <img src="/assets/icon.png" alt="logo" width="50" height="50">
       </a>
       <input style="padding: 10px;margin: 10px;outline: none;border: 1px solid #ddd;" type="email" placeholder="Email"
         id="email" required>
@@ -45,7 +45,7 @@
         style="padding: 10px;margin: 10px;background: #702e9c; border: 1px solid #702e9c;color:#fff;cursor: pointer;">Cadastrar</button>
       <a style="padding: 10px;text-decoration: none;color: #702e9c;font-size: 14px;" href="/login">Já tenho uma
         conta!</a>
-      <a style="padding: 10px;text-decoration: none;color: #702e9c;font-size: 14px;" href="#">Esqueci a senha!</a>
+      <a style="padding: 10px;text-decoration: none;color: #702e9c;font-size: 14px;" href="/recovery">Esqueci a senha!</a>
     </form>
   </section>
 </body>
@@ -78,8 +78,14 @@
 
     if (json.status) {
       alert('Cadastrado com sucesso!');
-      window.location.href = 'http://localhost:3000/login';
+      window.location.href = '/login';
     }
+  }
+  
+  //   Make it responsible
+  if(screen.width <= 414) {
+    document.getElementById('form-register').style.width = 'auto';
+    document.getElementById('form-register').style.border = 'none';
   }
 </script>
 
